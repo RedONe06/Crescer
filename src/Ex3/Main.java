@@ -1,46 +1,52 @@
+
 package Ex3;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 /**
- *
- * Descrição: Remova os caracteres repetidos em uma palavra;
- *
- * Resolução: Comparar index por index (a não ser com ele mesmo), se a letra se
- * repete. Comparar unicode para ver se é igual retornar a palavra sem nada
- *
  * @author andri
  */
+import java.util.Scanner;
+
 public class Main {
 
-    public static void main(String[] args) {
+   public static int biggerIndex(String[] words){
+      int bigger = 0;
+      int index = 0;
 
-        Scanner input = new Scanner(System.in);
-        String in = "";
-        String answer = "";
-        char letter;
-        int i, j, cont = 0;
+      for(int i = 0; i< words.length; i++){
+         if(words[i].length()>bigger){
+            bigger = words[i].length();
+            index = i;
+         }
+      }
+   return index;
+   }
 
-        System.out.println("Insira sua palavra:");
-        in = input.nextLine();
+   public static void main(String[] args) {
 
-        char[] letters = in.toCharArray();
-        for (i = 0; i < letters.length; i++) {
-            System.out.println("[" + i + "] " + letters[i]);
-        }
+      /**
+       * entrar a frase
+       * "palavra palavra pa lavra"
+       * separar as palavras como valores em um vetor
+       * ver qual das palavras tem mais chars
+       * */
 
-        for (i = 0; i < letters.length; i++) {
-            for (j = 0; j < letters.length; j++) {
-                if (letters[i] != letters[j]) {
-                    cont++;
-                }
-            }
-            if (cont == letters.length) {
-                answer += letters[i];
-            }
-        }
+      Scanner input = new Scanner(System.in);
 
-        System.out.println("Resposta: " + answer);
-    }
+      String word = "";
+      int i;
+
+      //input
+      System.out.println("Insira a frase:");
+      word = input.nextLine();
+
+      //cria um array para dividir
+      String[] words = word.split( " ");
+
+      //output
+      for(i = 0; i< words.length; i++){
+         System.out.println("[" + i + "] " + words[i]);
+      }
+
+      System.out.println("Maior palavra: " + words[biggerIndex(words)]);
+   }
 }
